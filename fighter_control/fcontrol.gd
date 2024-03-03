@@ -18,20 +18,30 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func floatlerp(a, b, fac):
 	return a + (b - a) * fac
 
-func directioninput():
-	return clamp(Input.get_axis("left","right"), -1, 1)
+func _get_local_input() -> Dictionary:
+	var left = Input.is_action_pressed("left")
+	var right = Input.is_action_pressed("right")
+	var jump = Input.is_action_just_pressed("jump")
+	var input := {}
+	if left:
+		input["left"] = true
+	if right:
+		input["right"] = true
+	input["jump"] = jump
+	print(input)
+	return input
 
 
-func _physics_process(delta):
+func _network_process(input: Dictionary) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y -= 25 * delta
+		velocity.y -= 25 * 0.01
 	
 	if is_on_floor():
 		airjumps = 0
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("jump"):
+	if input.get("jump", false):
 		if is_on_floor():
 			velocity.y = jump_vel
 		elif airjumps < max_airjumps:
@@ -42,7 +52,7 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	input_dir.x = directioninput()
+	input_dir.x = int(input.get("right", false))-int(input.get("left", false))
 	
 	if abs(input_dir.x) > 0:
 		move_dir = sign(input_dir)
@@ -61,3 +71,22 @@ func _physics_process(delta):
 		
 	
 	move_and_slide()
+	pass
+
+func _save_state() -> Dictionary:
+	return {
+		position = position,
+		input_dir = input_dir,
+		move_dir = move_dir,
+		face_dir = face_dir,
+		airjumps = airjumps,
+		velocity = velocity
+	}
+
+func _load_state(state:Dictionary)->void:
+	position=state['position']
+	input_dir=state['input_dir']
+	move_dir=state['move_dir']
+	face_dir=state['face_dir']
+	airjumps=state['airjumps']
+	velocity=state['velocity']

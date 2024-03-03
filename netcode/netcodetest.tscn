@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgijkpyqrirru"]
+
+[ext_resource type="Environment" uid="uid://bt3du2sd5ic1p" path="res://env.tres" id="1_ljtr1"]
+[ext_resource type="Script" path="res://netcode/netcodetest.gd" id="1_rm0ne"]
+[ext_resource type="PackedScene" uid="uid://bqifsled0ua21" path="res://fighter_control/fcontrol_node.tscn" id="2_fchvo"]
+[ext_resource type="PackedScene" uid="uid://d4agcrvrffn1c" path="res://fighter_control/camera.tscn" id="3_8r48v"]
+[ext_resource type="PackedScene" uid="uid://bu1q7mrf3juth" path="res://scenes/test2.glb" id="4_qqp7p"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_rm0ne")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_ljtr1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.793353, -0.378963, -0.476422, 0, -0.782608, 0.622515, -0.608761, 0.493874, 0.620885, 0, 0, 0)
+light_color = Color(0.313726, 0.364706, 0.419608, 1)
+shadow_enabled = true
+
+[node name="serverplayer" parent="." instance=ExtResource("2_fchvo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -3)
+
+[node name="clientplayer" parent="." instance=ExtResource("2_fchvo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 3)
+
+[node name="camera" parent="." instance=ExtResource("3_8r48v")]
+
+[node name="test2" parent="." instance=ExtResource("4_qqp7p")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4114, 1.653, -3.33151)
+light_color = Color(0.870588, 0, 0.184314, 1)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4114, 1.38507, 3.78888)
+light_color = Color(0.203922, 0.466667, 0.792157, 1)
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.82038, 1.653, 3.78888)
+light_color = Color(0.870588, 0, 0.184314, 1)
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.82038, 1.38507, -3.33151)
+light_color = Color(0.203922, 0.466667, 0.792157, 1)

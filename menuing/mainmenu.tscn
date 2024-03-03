@@ -1,0 +1,91 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqsi7yeo48ma8"]
+
+[ext_resource type="Script" path="res://menuing/mainmenu.gd" id="1_3lptm"]
+
+[node name="Mainmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3lptm")
+
+[node name="connectionpanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.0
+offset_top = -50.0
+offset_right = 113.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="connectionpanel"]
+layout_mode = 2
+columns = 2
+
+[node name="hostlabel" type="Label" parent="connectionpanel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "host:"
+
+[node name="hostline" type="LineEdit" parent="connectionpanel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "127.0.0.1"
+placeholder_text = "ip address here"
+
+[node name="portlabel" type="Label" parent="connectionpanel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "port:"
+
+[node name="portline" type="LineEdit" parent="connectionpanel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "9999"
+placeholder_text = "port here"
+
+[node name="serverbutton" type="Button" parent="connectionpanel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "server"
+
+[node name="clientbutton" type="Button" parent="connectionpanel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "client"
+
+[node name="onlinebutton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 538.0
+offset_top = 230.0
+offset_right = 607.0
+offset_bottom = 261.0
+text = "ONLINE"
+
+[node name="message" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+horizontal_alignment = 1
+
+[connection signal="pressed" from="connectionpanel/GridContainer/serverbutton" to="." method="_on_serverbutton_pressed"]
+[connection signal="pressed" from="connectionpanel/GridContainer/clientbutton" to="." method="_on_clientbutton_pressed"]
+[connection signal="pressed" from="onlinebutton" to="." method="_on_button_pressed"]

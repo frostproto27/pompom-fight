@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdfnv78nc37w2"]
+
+[ext_resource type="Script" path="res://netcode/netcodeglobal.gd" id="1_gu4xo"]
+
+[node name="Netcodeglobal" type="Node"]
+script = ExtResource("1_gu4xo")
