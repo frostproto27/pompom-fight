@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4agcrvrffn1c"]
+
+[ext_resource type="Environment" uid="uid://bt3du2sd5ic1p" path="res://env.tres" id="1_sukxv"]
+
+[node name="camera" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.00043635, 0, -1, 0, 1, 0, 1, 0, -0.00043635, -13, 0.25, 0)
+environment = ExtResource("1_sukxv")
+current = true
+fov = 20.0

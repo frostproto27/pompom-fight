@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqifsled0ua21"]
+
+[ext_resource type="Script" path="res://fighter_control/fcontrol.gd" id="1_f6aet"]
+[ext_resource type="Texture2D" uid="uid://kr6mokdet2al" path="res://sprites/lily_pad_idle.png" id="2_u5lq1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j3tor"]
+size = Vector3(1.5, 1.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c402i"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("2_u5lq1")
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_4vc84"]
+material = SubResource("StandardMaterial3D_c402i")
+size = Vector2(1.5, 1.5)
+
+[node name="fcontrol" type="Node3D"]
+
+[node name="Root" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Root"]
+script = ExtResource("1_f6aet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Root/CharacterBody3D"]
+shape = SubResource("BoxShape3D_j3tor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Root/CharacterBody3D"]
+mesh = SubResource("QuadMesh_4vc84")
