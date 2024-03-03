@@ -71,6 +71,10 @@ dash={
 ]
 }
 
+[physics]
+
+common/physics_ticks_per_second=64
+
 [rendering]
 
 anti_aliasing/quality/msaa_3d=2
