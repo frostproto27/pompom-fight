@@ -84,6 +84,10 @@ sync_debug={
 ]
 }
 
+[physics]
+
+common/physics_ticks_per_second=64
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

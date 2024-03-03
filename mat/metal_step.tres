@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://cwnsyr8nyla5k"]
+
+[ext_resource type="Texture2D" uid="uid://br3qmdw53thcq" path="res://sprites/env_tex/metal_step.png" id="1_1md03"]
+[ext_resource type="Texture2D" uid="uid://bvp3kn4q2ng0v" path="res://sprites/env_tex/metal_step_n.png" id="2_4yfm4"]
+[ext_resource type="Texture2D" uid="uid://chth72ykvm5om" path="res://sprites/env_tex/metal_step_r.png" id="3_s2o2k"]
+
+[resource]
+albedo_texture = ExtResource("1_1md03")
+metallic = 1.0
+roughness_texture = ExtResource("3_s2o2k")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_scale = 0.35
+normal_texture = ExtResource("2_4yfm4")
+texture_filter = 0

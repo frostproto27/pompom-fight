@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://kr6mokdet2al" path="res://sprites/lily_pad_idle.png" id="2_u5lq1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j3tor"]
-size = Vector3(1.5, 1.5, 0.5)
+size = Vector3(1, 1.5, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c402i"]
 transparency = 2
