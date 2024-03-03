@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var airspeed = 0 # keep at 0 for no air control
 @export var jump_vel = 7 # how much the character will go into the air when jumping
 @export var max_airjumps = 1 # dictates how many jumps you get in the air. completely arbitrary
-@export var gravity = 0.3 # defines the gravity. this is in m/s^2. i dont care if its inaccurate to real life fucko.
+@export var gravity = 0.2 # defines the gravity. this is in m/s^2. i dont care if its inaccurate to real life fucko.
 
 var input_dir = Vector2(0.0,0.0)
 var move_dir = int(0)
