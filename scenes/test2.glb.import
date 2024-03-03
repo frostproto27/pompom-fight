@@ -30,6 +30,36 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
+"materials": {
+"asphalt": {
+"use_external/enabled": true,
+"use_external/path": "res://mat/asphalt.tres"
+},
+"brick": {
+"use_external/enabled": true,
+"use_external/path": "res://mat/brick.tres"
+},
+"concrete": {
+"use_external/enabled": true,
+"use_external/path": "res://mat/concrete.tres"
+},
+"metal": {
+"use_external/enabled": true,
+"use_external/path": "res://mat/metal.tres"
+},
+"metal_door": {
+"use_external/enabled": true,
+"use_external/path": "res://mat/metal_door.tres"
+},
+"metal_step": {
+"use_external/enabled": true,
+"use_external/path": "res://mat/metal_step.tres"
+},
+"road": {
+"use_external/enabled": true,
+"use_external/path": "res://mat/road.tres"
+}
+},
 "nodes": {
 "PATH:Cube": {
 "generate/physics": true,
