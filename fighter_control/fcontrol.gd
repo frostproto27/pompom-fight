@@ -37,7 +37,7 @@ func _network_process(input: Dictionary) -> void:
 		velocity.y -= 25 * 0.01
 	
 	if not is_on_floor(): # gravity
-		velocity.y -= gravity * delta
+		velocity.y -= gravity
 	
 	if is_on_floor(): # refreshes doublejump when you touch the ground
 		airjumps = 0
