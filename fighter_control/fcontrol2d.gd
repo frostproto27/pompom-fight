@@ -1,10 +1,10 @@
-extends CharacterBody3D
+extends CharacterBody2D
 
 @export var speed = 3.5 # the speed, completely arbitrary
 @export var airspeed = 0 # keep at 0 for no air control
 @export var jump_vel = 7 # how much the character will go into the air when jumping
 @export var max_airjumps = 1 # dictates how many jumps you get in the air. completely arbitrary
-@export var gravity = 0.15 # defines the gravity. this is in m/s^2. i dont care if its inaccurate to real life fucko.
+@export var gravity = 0.15 # defines the gravity. this is PER TICK now (due to the elimination of delta) keep low
 @export var wallbounce = bool(1) # EXPERIMENTAL MECHANIC!!! touching a character while pressing the opposite movement key will turn you in the other direction :>
 
 var input_dir = Vector2(0.0,0.0)
@@ -12,7 +12,7 @@ var move_dir = int(0)
 var face_dir = int(0)
 var airjumps = int(0)
 
-@onready var meshinstance = $MeshInstance3D #ununused at the moment
+@onready var meshinstance = $MeshInstance3D
 
 # just some functions
 func floatlerp(a, b, fac): 
@@ -50,9 +50,9 @@ func _network_process(input: Dictionary) -> void:
 		elif airjumps < max_airjumps: # handles double jump, making sure you dont do it more than the maximum air jumps
 			velocity.y = jump_vel 
 			airjumps += 1
-			velocity.z = input_dir.x * speed # allows the switching of directions midair while doublejumping
-	if is_on_wall() and not is_on_floor():
-		velocity.z = input_dir.x * speed
+			velocity.x = input_dir.x * speed # allows the switching of directions midair while doublejumping
+	if is_on_wall() and wallbounce and not is_on_floor():
+		velocity.x = input_dir.x * speed
 		
 
 	# Get the input direction and handle the movement/deceleration.
@@ -65,18 +65,19 @@ func _network_process(input: Dictionary) -> void:
 	#meshinstance.scale.z = move_dir
 	
 	if is_on_floor():
-		velocity.z += speed * input_dir.x # moves the character. kinda important
+		velocity.x += speed * input_dir.x # moves the character. kinda important
 	if is_on_floor():
 		if abs(input_dir.x) > 0: # you slow down faster than you speed up. kinda wierd with controller input but its fine yknow
-			velocity.z *= 0.5
+			velocity.x *= 0.5
 		else:
-			velocity.z *= 0.8
+			velocity.x *= 0.8
 	else:
-		velocity.z *= 0.99 #slows down the character just a tad in the air :> set to 1 if we dont want that
+		velocity.x *= 0.99 #slows down the character just a tad in the air :> set to 1 if we dont want that
 	
-	position.z = 0
+	meshinstance.position.z = position.x
+	meshinstance.position.y = position.y
+	
 	move_and_slide()
-	print(position.z)
 	
 	pass
 
